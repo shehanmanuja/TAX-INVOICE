@@ -220,26 +220,40 @@
 
     .box-inline {
       display: flex;
-      align-items: baseline;
-      gap: 8px;
+      align-items: flex-start;
+      gap: 4px;
     }
 
     .box-label {
       font-size: 13px;
       font-weight: normal;
       white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .box-stacked .box-label {
+      width: 108px;
+      min-width: 108px;
+    }
+
+    .box-inline .box-label {
+      min-width: 95px;
+    }
+
+    .bottom-box .box-label {
+      min-width: 145px;
     }
 
     .box-stacked {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 5px;
     }
 
     .box-field-row {
       display: flex;
-      align-items: baseline;
-      gap: 6px;
+      align-items: flex-start;
+      gap: 4px;
     }
 
     /* INLINE EDITABLE INPUTS & TEXT AREAS */
@@ -255,6 +269,18 @@
       background: transparent;
       color: #000;
       width: 100%;
+    }
+
+    textarea.auto-wrap {
+      resize: none;
+      overflow: hidden;
+      line-height: 1.25;
+      min-height: 1.25em;
+      display: block;
+      vertical-align: top;
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
     }
 
     input:focus,
@@ -326,7 +352,8 @@
       text-align: right;
     }
 
-    .item-table td input {
+    .item-table td input,
+    .item-table td textarea {
       width: 100%;
     }
 
@@ -356,7 +383,7 @@
       padding: 6px 10px;
       margin-top: 8px;
       display: flex;
-      align-items: baseline;
+      align-items: flex-start;
       gap: 8px;
     }
 
@@ -552,12 +579,11 @@
             </div>
             <div class="box-field-row">
               <span class="box-label">Supplier's Name :</span>
-              <input type="text" id="supplierName" value="EXIMIUS POWER AND ENERGY (PRIVATE) LIMITED">
+              <textarea class="auto-wrap" id="supplierName" rows="1" oninput="autoResizeTextarea(this)">EXIMIUS POWER AND ENERGY (PRIVATE) LIMITED</textarea>
             </div>
-            <div class="box-field-row" style="align-items: flex-start;">
+            <div class="box-field-row">
               <span class="box-label">Address :</span>
-              <textarea id="supplierAddress" rows="2"
-                style="resize: vertical;">No: 74 1/1, Orient Building, Union Place, Colombo 02</textarea>
+              <textarea class="auto-wrap" id="supplierAddress" rows="1" oninput="autoResizeTextarea(this)">No: 74 1/1, Orient Building, Union Place, Colombo 02</textarea>
             </div>
             <div class="box-field-row" style="margin-top: auto;">
               <span class="box-label">Telephone No.:*</span>
@@ -577,12 +603,11 @@
             </div>
             <div class="box-field-row">
               <span class="box-label">Purchaser's Name :</span>
-              <input type="text" id="purchaserName" value="CEYLON RETAIL HOLDINGS PLC">
+              <textarea class="auto-wrap" id="purchaserName" rows="1" oninput="autoResizeTextarea(this)">CEYLON RETAIL HOLDINGS PLC</textarea>
             </div>
-            <div class="box-field-row" style="align-items: flex-start;">
+            <div class="box-field-row">
               <span class="box-label">Address :</span>
-              <textarea id="purchaserAddress" rows="2"
-                style="resize: vertical;">No. 88, Kandy Road, Kelaniya, Sri Lanka</textarea>
+              <textarea class="auto-wrap" id="purchaserAddress" rows="1" oninput="autoResizeTextarea(this)">No. 88, Kandy Road, Kelaniya, Sri Lanka</textarea>
             </div>
             <div class="box-field-row" style="margin-top: auto;">
               <span class="box-label">Telephone No.:*</span>
@@ -604,7 +629,7 @@
         <div class="col-half">
           <div class="box box-inline">
             <span class="box-label">Place of Supply :*</span>
-            <input type="text" id="placeOfSupply" value="Colombo Warehouse - Site A">
+            <textarea class="auto-wrap" id="placeOfSupply" rows="1" oninput="autoResizeTextarea(this)">Colombo Warehouse - Site A</textarea>
           </div>
         </div>
       </div>
@@ -612,7 +637,7 @@
       <!-- ROW 4: ADDITIONAL INFORMATION -->
       <div class="box box-inline" style="margin-bottom: 8px;">
         <span class="box-label">Additional Information if any:*</span>
-        <input type="text" id="additionalInfo" value="PO Reference: PO-2026-8942 | Delivery Note: DN-7721">
+        <textarea class="auto-wrap" id="additionalInfo" rows="1" oninput="autoResizeTextarea(this)">PO Reference: PO-2026-8942 | Delivery Note: DN-7721</textarea>
       </div>
 
       <!-- MAIN GOODS & SERVICES TABLE -->
@@ -666,13 +691,13 @@
       <!-- ROW 5: TOTAL AMOUNT IN WORDS -->
       <div class="bottom-box">
         <span class="box-label">Total Amount in words:*</span>
-        <input type="text" id="totalAmountWords" value="Rupees Zero Only" style="font-weight: bold;">
+        <textarea class="auto-wrap" id="totalAmountWords" rows="1" style="font-weight: bold;" oninput="autoResizeTextarea(this)">Rupees Zero Only</textarea>
       </div>
 
       <!-- ROW 6: MODE OF PAYMENT -->
       <div class="bottom-box">
         <span class="box-label">Mode of Payment:*</span>
-        <input type="text" id="modeOfPayment" value="Bank Transfer / Cheque (Bank of Ceylon - A/C 7044912)">
+        <textarea class="auto-wrap" id="modeOfPayment" rows="1" oninput="autoResizeTextarea(this)">Bank Transfer / Cheque (Bank of Ceylon - A/C 7044912)</textarea>
       </div>
     </div>
 
@@ -680,6 +705,21 @@
   </div>
 
   <script>
+    // AUTO RESIZE TEXTAREA LOGIC
+    function autoResizeTextarea(el) {
+      if (!el) return;
+      el.style.height = 'auto';
+      el.style.height = el.scrollHeight + 'px';
+    }
+
+    function initAutoResizeAll() {
+      document.querySelectorAll('textarea.auto-wrap').forEach(el => {
+        autoResizeTextarea(el);
+      });
+    }
+
+    window.addEventListener('resize', initAutoResizeAll);
+
     // INITIAL SAMPLE DATA FOR THE GAZETTE SPECIMEN
     const initialItems = [
       { ref: "REF-001", desc: "Industrial Commercial Grade Printers", qty: 2, price: 125000.00 },
@@ -700,6 +740,7 @@
         addNewRow(item.ref, item.desc, item.qty, item.price);
       });
       calculateInvoiceTotal();
+      setTimeout(initAutoResizeAll, 50);
     }
 
     // ADD A NEW ROW TO THE ITEMS TABLE
@@ -712,7 +753,7 @@
           <input type="text" value="${escapeHtml(ref)}" placeholder="Ref Code" oninput="calculateInvoiceTotal()">
         </td>
         <td class="col-desc">
-          <input type="text" value="${escapeHtml(desc)}" placeholder="Item description" oninput="calculateInvoiceTotal()">
+          <textarea class="auto-wrap" rows="1" placeholder="Item description" oninput="autoResizeTextarea(this); calculateInvoiceTotal()">${escapeHtml(desc)}</textarea>
         </td>
         <td class="col-qty">
           <input type="number" class="text-right" value="${qty}" min="0" step="1" oninput="calculateInvoiceTotal()">
@@ -727,6 +768,8 @@
       `;
 
       tbody.appendChild(tr);
+      const descTextarea = tr.querySelector('textarea.auto-wrap');
+      if (descTextarea) autoResizeTextarea(descTextarea);
       calculateInvoiceTotal();
     }
 
@@ -788,7 +831,11 @@
       document.getElementById('totalAmountIncludingVat').textContent = formatCurrency(totalWithVat);
 
       // Update Amount in Words
-      document.getElementById('totalAmountWords').value = convertNumberToWords(totalWithVat);
+      const totalWordsEl = document.getElementById('totalAmountWords');
+      if (totalWordsEl) {
+        totalWordsEl.value = convertNumberToWords(totalWithVat);
+        autoResizeTextarea(totalWordsEl);
+      }
     }
 
     // FORMAT CURRENCY TO LKR / Rs. WITH TWO DECIMAL PLACES AND THOUSAND SEPARATORS
