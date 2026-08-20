@@ -34,51 +34,138 @@
       padding-bottom: 40px;
     }
 
+    /* TOP CONTROLS WRAPPER & BACKUP CARD */
+    .top-controls-wrapper {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin: 20px 0 15px 0;
+      align-items: stretch;
+    }
+
     /* TOP ACTION & CONTROLS TOOLBAR (HIDDEN ON PRINT) */
     .no-print-toolbar {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       width: 100%;
-      max-width: 900px;
       background: #ffffff;
-      margin: 20px 0 15px 0;
-      padding: 16px 24px;
+      margin: 0;
+      padding: 14px 20px;
       border-radius: 12px;
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
       display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
+      flex-direction: row;
+      flex-wrap: nowrap;
       align-items: center;
       justify-content: space-between;
+      gap: 16px;
       border: 1px solid #e2e8f0;
     }
 
+    /* BACKUP & RESTORE CARD */
+    .backup-card {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 14px 20px;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .backup-card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .backup-card-header svg {
+      color: #0f172a;
+      flex-shrink: 0;
+    }
+
+    .backup-card-desc {
+      font-size: 0.8rem;
+      color: #64748b;
+      margin: 4px 0 0 0;
+      line-height: 1.4;
+    }
+
+    .backup-card-actions {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+    }
+
+    .btn-backup-action {
+      width: 100%;
+      background: #ffffff;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 9px 14px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-backup-action:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+      color: #0f172a;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    }
+
+    .btn-backup-action svg {
+      flex-shrink: 0;
+    }
+
     .toolbar-title {
-      font-size: 1.1rem;
+      font-size: 0.98rem;
       font-weight: 700;
       color: #0f172a;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
+      white-space: nowrap;
     }
 
     .toolbar-actions {
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      gap: 8px;
       align-items: center;
+      flex-shrink: 0;
     }
 
     .btn {
       font-family: inherit;
-      font-size: 0.875rem;
+      font-size: 0.85rem;
       font-weight: 600;
-      padding: 8px 16px;
+      padding: 6px 12px;
       border-radius: 6px;
       border: 1px solid transparent;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
+      white-space: nowrap;
       transition: all 0.2s ease;
     }
 
@@ -87,7 +174,7 @@
       color: #ffffff;
       border: 1.5px solid #10b981;
       border-radius: 50px;
-      padding: 10px 22px;
+      padding: 6px 14px;
       font-weight: 700;
       box-shadow: 0 4px 14px rgba(4, 75, 60, 0.35);
     }
@@ -439,6 +526,125 @@
       letter-spacing: 0.5px;
     }
 
+    /* TABLE RESPONSIVE WRAPPER */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* RESPONSIVE MOBILE STYLES */
+    @media screen and (max-width: 768px) {
+      body {
+        padding: 8px 6px 30px 6px;
+      }
+
+      .top-controls-wrapper {
+        flex-direction: column;
+        margin: 5px 0 10px 0;
+        gap: 12px;
+      }
+
+      .backup-card {
+        width: 100%;
+      }
+
+      .no-print-toolbar {
+        margin: 0;
+        padding: 12px 14px;
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+        border-radius: 10px;
+      }
+
+      .toolbar-title {
+        justify-content: center;
+        font-size: 1rem;
+      }
+
+      .toolbar-actions {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 100%;
+        gap: 6px;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .vat-control {
+        width: auto;
+        justify-content: center;
+        padding: 6px 8px;
+      }
+
+      .btn {
+        width: auto;
+        justify-content: center;
+        padding: 8px 12px;
+        font-size: 0.85rem;
+      }
+
+      .invoice-paper {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: auto !important;
+        padding: 15px 10px 15px 10px !important;
+        background-image: none !important;
+        background-color: #ffffff !important;
+        border-radius: 8px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .section-row {
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .col-half {
+        width: 100%;
+      }
+
+      .box {
+        padding: 6px 8px;
+      }
+
+      .box-stacked .box-label {
+        width: 102px;
+        min-width: 102px;
+      }
+
+      .box-inline .box-label {
+        min-width: 90px;
+      }
+
+      .bottom-box .box-label {
+        min-width: 130px;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      input[type="date"],
+      textarea,
+      select {
+        font-size: 14px !important;
+      }
+
+      .item-table {
+        min-width: 540px;
+      }
+
+      .item-table th,
+      .item-table td {
+        padding: 5px 6px;
+        font-size: 12px;
+      }
+
+      .add-row-container .btn {
+        width: auto;
+      }
+    }
+
     /* PRINT STYLES - EXACT 1:1 A4 PAGE PREVIEW */
     @media print {
       @page {
@@ -456,6 +662,9 @@
         overflow: hidden;
       }
 
+      .no-print,
+      .top-controls-wrapper,
+      .backup-card,
       .no-print-toolbar,
       .add-row-container,
       .row-actions,
@@ -480,6 +689,38 @@
         page-break-inside: avoid !important;
       }
 
+      .section-row {
+        flex-direction: row !important;
+        gap: 12px !important;
+      }
+
+      .col-half {
+        width: 50% !important;
+        flex: 1 !important;
+      }
+
+      .box-stacked .box-label {
+        width: 108px !important;
+        min-width: 108px !important;
+      }
+
+      .box-inline .box-label {
+        min-width: 95px !important;
+      }
+
+      .bottom-box .box-label {
+        min-width: 145px !important;
+      }
+
+      .table-responsive {
+        overflow: visible !important;
+      }
+
+      .item-table {
+        min-width: 100% !important;
+        width: 100% !important;
+      }
+
       input[type="text"],
       input[type="number"],
       input[type="date"],
@@ -489,6 +730,7 @@
         -webkit-appearance: none;
         -moz-appearance: none;
         background: transparent !important;
+        font-size: 13px !important;
       }
 
       /* Clean line heights and border preservation */
@@ -503,38 +745,76 @@
 
 <body>
 
-  <!-- TOP ACTION & CONTROLS TOOLBAR -->
-  <div class="no-print-toolbar">
-    <div class="toolbar-title">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-        <polyline points="14 2 14 8 20 8"></polyline>
-        <line x1="16" y1="13" x2="8" y2="13"></line>
-        <line x1="16" y1="17" x2="8" y2="17"></line>
-        <polyline points="10 9 9 9 8 9"></polyline>
-      </svg>
-      IRD Sri Lanka Tax Invoice Generator
-    </div>
-    <div class="toolbar-actions">
-      <div class="vat-control">
-        <span>VAT Rate:</span>
-        <input type="number" id="vatRateInput" value="18" min="0" max="100" step="0.5"
-          oninput="calculateInvoiceTotal()">
-        <span>%</span>
+  <!-- TOP ACTION & CONTROLS WRAPPER -->
+  <div class="top-controls-wrapper no-print">
+    <div class="no-print-toolbar">
+      <div class="toolbar-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        IRD Sri Lanka Tax Invoice Generator
       </div>
+      <div class="toolbar-actions">
+        <div class="vat-control">
+          <span>VAT Rate:</span>
+          <input type="number" id="vatRateInput" value="18" min="0" max="100" step="0.5"
+            oninput="calculateInvoiceTotal()">
+          <span>%</span>
+        </div>
 
-      <button class="btn btn-outline" onclick="generateInvoiceNumber()">
-        ⚡ Auto Serial
-      </button>
+        <button class="btn btn-secondary" onclick="loadSampleData()" title="Reset Specimen Data">
+          🔄 Reset
+        </button>
 
-      <button class="btn btn-secondary" onclick="loadSampleData()">
-        🔄 Reset Specimen Data
-      </button>
+        <button class="btn btn-primary" onclick="window.print()">
+          🖨️ Print / Save as PDF
+        </button>
+      </div>
+    </div>
 
-      <button class="btn btn-primary" onclick="window.print()">
-        🖨️ Print / Save as PDF
-      </button>
+    <!-- DATA BACKUP & RESTORE CARD -->
+    <div class="backup-card">
+      <div>
+        <div class="backup-card-header">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+            <polyline points="7 3 7 8 15 8"></polyline>
+          </svg>
+          Data Backup &amp; Restore
+        </div>
+        <p class="backup-card-desc">
+          Save a backup file to keep your monthly log data safe or transfer it to another computer.
+        </p>
+      </div>
+      <div class="backup-card-actions">
+        <button class="btn-backup-action" onclick="exportInvoiceData()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Export Data Backup
+        </button>
+        <button class="btn-backup-action" onclick="document.getElementById('importFileInput').click()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+          Import Backup File
+        </button>
+        <input type="file" id="importFileInput" accept=".json" style="display: none;"
+          onchange="importInvoiceData(event)">
+      </div>
     </div>
   </div>
 
@@ -579,11 +859,13 @@
             </div>
             <div class="box-field-row">
               <span class="box-label">Supplier's Name :</span>
-              <textarea class="auto-wrap" id="supplierName" rows="1" oninput="autoResizeTextarea(this)">EXIMIUS POWER AND ENERGY (PRIVATE) LIMITED</textarea>
+              <textarea class="auto-wrap" id="supplierName" rows="1"
+                oninput="autoResizeTextarea(this)">EXIMIUS POWER AND ENERGY (PRIVATE) LIMITED</textarea>
             </div>
             <div class="box-field-row">
               <span class="box-label">Address :</span>
-              <textarea class="auto-wrap" id="supplierAddress" rows="1" oninput="autoResizeTextarea(this)">No: 74 1/1, Orient Building, Union Place, Colombo 02</textarea>
+              <textarea class="auto-wrap" id="supplierAddress" rows="1"
+                oninput="autoResizeTextarea(this)">No: 74 1/1, Orient Building, Union Place, Colombo 02</textarea>
             </div>
             <div class="box-field-row" style="margin-top: auto;">
               <span class="box-label">Telephone No.:*</span>
@@ -603,11 +885,13 @@
             </div>
             <div class="box-field-row">
               <span class="box-label">Purchaser's Name :</span>
-              <textarea class="auto-wrap" id="purchaserName" rows="1" oninput="autoResizeTextarea(this)">CEYLON RETAIL HOLDINGS PLC</textarea>
+              <textarea class="auto-wrap" id="purchaserName" rows="1"
+                oninput="autoResizeTextarea(this)">CEYLON RETAIL HOLDINGS PLC</textarea>
             </div>
             <div class="box-field-row">
               <span class="box-label">Address :</span>
-              <textarea class="auto-wrap" id="purchaserAddress" rows="1" oninput="autoResizeTextarea(this)">No. 88, Kandy Road, Kelaniya, Sri Lanka</textarea>
+              <textarea class="auto-wrap" id="purchaserAddress" rows="1"
+                oninput="autoResizeTextarea(this)">No. 88, Kandy Road, Kelaniya, Sri Lanka</textarea>
             </div>
             <div class="box-field-row" style="margin-top: auto;">
               <span class="box-label">Telephone No.:*</span>
@@ -629,7 +913,8 @@
         <div class="col-half">
           <div class="box box-inline">
             <span class="box-label">Place of Supply :*</span>
-            <textarea class="auto-wrap" id="placeOfSupply" rows="1" oninput="autoResizeTextarea(this)">Colombo Warehouse - Site A</textarea>
+            <textarea class="auto-wrap" id="placeOfSupply" rows="1"
+              oninput="autoResizeTextarea(this)">Colombo Warehouse - Site A</textarea>
           </div>
         </div>
       </div>
@@ -637,49 +922,52 @@
       <!-- ROW 4: ADDITIONAL INFORMATION -->
       <div class="box box-inline" style="margin-bottom: 8px;">
         <span class="box-label">Additional Information if any:*</span>
-        <textarea class="auto-wrap" id="additionalInfo" rows="1" oninput="autoResizeTextarea(this)">PO Reference: PO-2026-8942 | Delivery Note: DN-7721</textarea>
+        <textarea class="auto-wrap" id="additionalInfo" rows="1"
+          oninput="autoResizeTextarea(this)">PO Reference: PO-2026-8942 | Delivery Note: DN-7721</textarea>
       </div>
 
       <!-- MAIN GOODS & SERVICES TABLE -->
-      <table class="item-table" id="itemsTable">
-        <thead>
-          <tr>
-            <th class="col-ref">Reference*</th>
-            <th class="col-desc">Description of Goods or Services</th>
-            <th class="col-qty">Quantity</th>
-            <th class="col-price">Unit Price</th>
-            <th class="col-amount">Amount Excluding VAT (Rs.)</th>
-            <th class="row-actions no-print"></th>
-          </tr>
-        </thead>
-        <tbody id="itemRows">
-          <!-- Dynamic item rows inserted here -->
-        </tbody>
-        <tfoot>
-          <!-- SUMMARY ROW 1: TOTAL VALUE OF SUPPLY -->
-          <tr class="summary-row">
-            <td colspan="4" class="summary-label">Total Value of Supply:</td>
-            <td class="text-right" id="totalValueExcludingVat">0.00</td>
-            <td class="row-actions no-print"></td>
-          </tr>
-          <!-- SUMMARY ROW 2: VAT AMOUNT -->
-          <tr class="summary-row">
-            <td colspan="4" class="summary-label">
-              VAT Amount (Total Value of Supply @ <span id="vatRateDisplay">18</span>% VAT Rate)
-            </td>
-            <td class="text-right" id="vatAmount">0.00</td>
-            <td class="row-actions no-print"></td>
-          </tr>
-          <!-- SUMMARY ROW 3: TOTAL AMOUNT INCLUDING VAT -->
-          <tr class="summary-row">
-            <td colspan="4" class="summary-label" style="font-weight: bold;">
-              Total Amount/consideration including VAT:
-            </td>
-            <td class="text-right" id="totalAmountIncludingVat" style="font-weight: bold;">0.00</td>
-            <td class="row-actions no-print"></td>
-          </tr>
-        </tfoot>
-      </table>
+      <div class="table-responsive">
+        <table class="item-table" id="itemsTable">
+          <thead>
+            <tr>
+              <th class="col-ref">Reference*</th>
+              <th class="col-desc">Description of Goods or Services</th>
+              <th class="col-qty">Quantity</th>
+              <th class="col-price">Unit Price</th>
+              <th class="col-amount">Amount Excluding VAT (Rs.)</th>
+              <th class="row-actions no-print"></th>
+            </tr>
+          </thead>
+          <tbody id="itemRows">
+            <!-- Dynamic item rows inserted here -->
+          </tbody>
+          <tfoot>
+            <!-- SUMMARY ROW 1: TOTAL VALUE OF SUPPLY -->
+            <tr class="summary-row">
+              <td colspan="4" class="summary-label">Total Value of Supply:</td>
+              <td class="text-right" id="totalValueExcludingVat">0.00</td>
+              <td class="row-actions no-print"></td>
+            </tr>
+            <!-- SUMMARY ROW 2: VAT AMOUNT -->
+            <tr class="summary-row">
+              <td colspan="4" class="summary-label">
+                VAT Amount (Total Value of Supply @ <span id="vatRateDisplay">18</span>% VAT Rate)
+              </td>
+              <td class="text-right" id="vatAmount">0.00</td>
+              <td class="row-actions no-print"></td>
+            </tr>
+            <!-- SUMMARY ROW 3: TOTAL AMOUNT INCLUDING VAT -->
+            <tr class="summary-row">
+              <td colspan="4" class="summary-label" style="font-weight: bold;">
+                Total Amount/consideration including VAT:
+              </td>
+              <td class="text-right" id="totalAmountIncludingVat" style="font-weight: bold;">0.00</td>
+              <td class="row-actions no-print"></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
 
       <!-- ADD ROW BUTTON -->
       <div class="add-row-container no-print">
@@ -691,13 +979,15 @@
       <!-- ROW 5: TOTAL AMOUNT IN WORDS -->
       <div class="bottom-box">
         <span class="box-label">Total Amount in words:*</span>
-        <textarea class="auto-wrap" id="totalAmountWords" rows="1" style="font-weight: bold;" oninput="autoResizeTextarea(this)">Rupees Zero Only</textarea>
+        <textarea class="auto-wrap" id="totalAmountWords" rows="1" style="font-weight: bold;"
+          oninput="autoResizeTextarea(this)">Rupees Zero Only</textarea>
       </div>
 
       <!-- ROW 6: MODE OF PAYMENT -->
       <div class="bottom-box">
         <span class="box-label">Mode of Payment:*</span>
-        <textarea class="auto-wrap" id="modeOfPayment" rows="1" oninput="autoResizeTextarea(this)">Bank Transfer / Cheque (Bank of Ceylon - A/C 7044912)</textarea>
+        <textarea class="auto-wrap" id="modeOfPayment" rows="1"
+          oninput="autoResizeTextarea(this)">Bank Transfer / Cheque (Bank of Ceylon - A/C 7044912)</textarea>
       </div>
     </div>
 
@@ -936,6 +1226,133 @@
           input.value = `${mm}/${dd}/${yyyy}`;
         }
       }
+    }
+
+    // EXPORT DATA BACKUP (DOWNLOAD JSON FILE)
+    function exportInvoiceData() {
+      const data = {
+        version: "1.0",
+        exportedAt: new Date().toISOString(),
+        vatRate: document.getElementById('vatRateInput').value,
+        dateOfInvoice: document.getElementById('dateOfInvoice').value,
+        taxInvoiceNo: document.getElementById('taxInvoiceNo').value,
+        supplier: {
+          tin: document.getElementById('supplierTin').value,
+          name: document.getElementById('supplierName').value,
+          address: document.getElementById('supplierAddress').value,
+          phone: document.getElementById('supplierPhone').value
+        },
+        purchaser: {
+          tin: document.getElementById('purchaserTin').value,
+          name: document.getElementById('purchaserName').value,
+          address: document.getElementById('purchaserAddress').value,
+          phone: document.getElementById('purchaserPhone').value
+        },
+        dateOfSupply: document.getElementById('dateOfSupply').value,
+        placeOfSupply: document.getElementById('placeOfSupply').value,
+        additionalInfo: document.getElementById('additionalInfo').value,
+        items: [],
+        totalAmountWords: document.getElementById('totalAmountWords').value,
+        modeOfPayment: document.getElementById('modeOfPayment').value
+      };
+
+      const rows = document.querySelectorAll('#itemRows tr');
+      rows.forEach(row => {
+        const ref = row.querySelector('.col-ref input')?.value || '';
+        const desc = row.querySelector('.col-desc textarea')?.value || '';
+        const qty = parseFloat(row.querySelector('.col-qty input')?.value) || 0;
+        const price = parseFloat(row.querySelector('.col-price input')?.value) || 0;
+        data.items.push({ ref, desc, qty, price });
+      });
+
+      const jsonStr = JSON.stringify(data, null, 2);
+      const blob = new Blob([jsonStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+
+      const rawInvNo = data.taxInvoiceNo || 'invoice';
+      const safeInvNo = rawInvNo.replace(/[^a-zA-Z0-9_-]/g, '_');
+      const dateTag = new Date().toISOString().slice(0, 10);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `tax_invoice_backup_${safeInvNo}_${dateTag}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    // IMPORT DATA BACKUP (READ JSON FILE)
+    function importInvoiceData(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        try {
+          const data = JSON.parse(e.target.result);
+
+          if (data.vatRate !== undefined) document.getElementById('vatRateInput').value = data.vatRate;
+          if (data.dateOfInvoice !== undefined) document.getElementById('dateOfInvoice').value = data.dateOfInvoice;
+
+          if (data.taxInvoiceNo !== undefined) {
+            const invInput = document.getElementById('taxInvoiceNo');
+            invInput.value = data.taxInvoiceNo;
+            validateInvoiceNo(invInput);
+          }
+
+          if (data.supplier) {
+            if (data.supplier.tin !== undefined) {
+              const sTin = document.getElementById('supplierTin');
+              sTin.value = data.supplier.tin;
+              validateTin(sTin);
+            }
+            if (data.supplier.name !== undefined) document.getElementById('supplierName').value = data.supplier.name;
+            if (data.supplier.address !== undefined) document.getElementById('supplierAddress').value = data.supplier.address;
+            if (data.supplier.phone !== undefined) document.getElementById('supplierPhone').value = data.supplier.phone;
+          }
+
+          if (data.purchaser) {
+            if (data.purchaser.tin !== undefined) {
+              const pTin = document.getElementById('purchaserTin');
+              pTin.value = data.purchaser.tin;
+              validateTin(pTin);
+            }
+            if (data.purchaser.name !== undefined) document.getElementById('purchaserName').value = data.purchaser.name;
+            if (data.purchaser.address !== undefined) document.getElementById('purchaserAddress').value = data.purchaser.address;
+            if (data.purchaser.phone !== undefined) document.getElementById('purchaserPhone').value = data.purchaser.phone;
+          }
+
+          if (data.dateOfSupply !== undefined) document.getElementById('dateOfSupply').value = data.dateOfSupply;
+          if (data.placeOfSupply !== undefined) document.getElementById('placeOfSupply').value = data.placeOfSupply;
+          if (data.additionalInfo !== undefined) document.getElementById('additionalInfo').value = data.additionalInfo;
+
+          if (Array.isArray(data.items) && data.items.length > 0) {
+            const tbody = document.getElementById('itemRows');
+            tbody.innerHTML = '';
+            data.items.forEach(item => {
+              addNewRow(item.ref || '', item.desc || '', item.qty || 1, item.price || 0);
+            });
+          }
+
+          if (data.modeOfPayment !== undefined) document.getElementById('modeOfPayment').value = data.modeOfPayment;
+
+          calculateInvoiceTotal();
+
+          if (data.totalAmountWords !== undefined) {
+            document.getElementById('totalAmountWords').value = data.totalAmountWords;
+          }
+
+          initAutoResizeAll();
+          alert('Data imported successfully!');
+        } catch (err) {
+          alert('Invalid backup file! Please select a valid JSON backup file.');
+          console.error(err);
+        }
+      };
+
+      reader.readAsText(file);
+      event.target.value = ''; // Reset input selection
     }
   </script>
 </body>
