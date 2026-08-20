@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tax Invoice - Inland Revenue Department Specimen (Sri Lanka)</title>
+  <style>
+    /* CSS RESET & VARIABLES */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary-color: #0f172a;
+      --accent-color: #2563eb;
+      --bg-color: #f1f5f9;
+      --paper-bg: #ffffff;
+      --border-color: #000000;
+      --text-color: #000000;
+      --ui-border: #cbd5e1;
+    }
+
+    body {
+      font-family: "Times New Roman", Times, serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding-bottom: 40px;
+    }
+
+    /* TOP CONTROLS WRAPPER & BACKUP CARD */
+    .top-controls-wrapper {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin: 20px 0 15px 0;
+      align-items: stretch;
+    }
+
+    /* TOP ACTION & CONTROLS TOOLBAR (HIDDEN ON PRINT) */
+    .no-print-toolbar {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      width: 100%;
+      background: #ffffff;
+      margin: 0;
+      padding: 14px 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border: 1px solid #e2e8f0;
+    }
+
+    /* BACKUP & RESTORE CARD */
+    .backup-card {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 14px 20px;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .backup-card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .backup-card-header svg {
+      color: #0f172a;
+      flex-shrink: 0;
+    }
+
+    .backup-card-desc {
+      font-size: 0.8rem;
+      color: #64748b;
+      margin: 4px 0 0 0;
+      line-height: 1.4;
+    }
+
+    .backup-card-actions {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+    }
+
+    .btn-backup-action {
+      width: 100%;
+      background: #ffffff;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 9px 14px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-backup-action:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+      color: #0f172a;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    }
+
+    .btn-backup-action svg {
+      flex-shrink: 0;
+    }
+
+    .toolbar-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      gap: 8px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #044b3c 0%, #091a2f 100%);
+      color: #ffffff;
+      border: 1.5px solid #10b981;
+      border-radius: 50px;
+      padding: 6px 14px;
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(4, 75, 60, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #065f4d 0%, #0c2443 100%);
+      border-color: #34d399;
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background-color: #f8fafc;
+      color: #334155;
+      border-color: #cbd5e1;
+    }
+
+    .btn-secondary:hover {
+      background-color: #f1f5f9;
+      border-color: #94a3b8;
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: #475569;
+      border-color: #cbd5e1;
+    }
+
+    .btn-outline:hover {
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+
+    .vat-control {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #334155;
+      background: #f8fafc;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+    }
+
+    .vat-control input {
+      width: 50px;
+      padding: 4px 6px;
+      font-size: 0.875rem;
+      border: 1px solid #94a3b8;
+      border-radius: 4px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    /* INVOICE PAPER SPECIMEN CONTAINER */
+    .invoice-paper {
+      width: 210mm;
+      min-height: 297mm;
+      background-color: var(--paper-bg);
+      background-image: url('000.jpg');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-position: center center;
+      padding: 65mm 15mm 15mm 15mm;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* GAZETTE HEADER BAR */
+    .gazette-header {
+      font-size: 10px;
+      text-align: center;
+      line-height: 1.3;
+      margin-bottom: 8px;
+      font-family: "Times New Roman", Times, serif;
+    }
+
+    .gazette-header-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+    }
+
+    .gazette-header-line {
+      border-bottom: 1px solid #000;
+      margin-top: 4px;
+      margin-bottom: 12px;
+    }
+
+    /* TAX INVOICE TITLE BOX */
+    .title-box-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .title-box {
+      border: none;
+      padding: 4px 0;
+      font-size: 20px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* SPECIMEN GRID SECTIONS */
+    .section-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .col-half {
+      flex: 1;
+    }
+
+    /* FIELD BOX STYLING */
+    .box {
+      border: 1px solid #000;
+      padding: 6px 10px;
+      position: relative;
+    }
+
+    .box-inline {
+      display: flex;
+      align-items: flex-start;
+      gap: 4px;
+    }
+
+    .box-label {
+      font-size: 13px;
+      font-weight: normal;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .box-stacked .box-label {
+      width: 108px;
+      min-width: 108px;
+    }
+
+    .box-inline .box-label {
+      min-width: 95px;
+    }
+
+    .bottom-box .box-label {
+      min-width: 145px;
+    }
+
+    .box-stacked {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .box-field-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 4px;
+    }
+
+    /* INLINE EDITABLE INPUTS & TEXT AREAS */
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    textarea,
+    select {
+      font-family: "Times New Roman", Times, serif;
+      font-size: 13px;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: #000;
+      width: 100%;
+    }
+
+    textarea.auto-wrap {
+      resize: none;
+      overflow: hidden;
+      line-height: 1.25;
+      min-height: 1.25em;
+      display: block;
+      vertical-align: top;
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    input:focus,
+    textarea:focus {
+      background-color: #eff6ff;
+    }
+
+    .validation-hint {
+      font-family: sans-serif;
+      font-size: 10px;
+      color: #dc2626;
+      display: none;
+      margin-top: 2px;
+    }
+
+    .invalid .validation-hint {
+      display: block;
+    }
+
+    .invalid input {
+      color: #dc2626;
+      font-weight: bold;
+    }
+
+    /* ITEM TABLE */
+    .item-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      margin-bottom: 0;
+    }
+
+    .item-table th,
+    .item-table td {
+      border: 1px solid #000;
+      padding: 6px 8px;
+      font-size: 13px;
+      vertical-align: top;
+    }
+
+    .item-table th {
+      font-weight: bold;
+      text-align: center;
+      background-color: transparent;
+    }
+
+    .col-ref {
+      width: 14%;
+      text-align: left;
+    }
+
+    .col-desc {
+      width: 44%;
+      text-align: left;
+    }
+
+    .col-qty {
+      width: 12%;
+      text-align: right;
+    }
+
+    .col-price {
+      width: 14%;
+      text-align: right;
+    }
+
+    .col-amount {
+      width: 16%;
+      text-align: right;
+    }
+
+    .item-table td input,
+    .item-table td textarea {
+      width: 100%;
+    }
+
+    .text-right {
+      text-align: right !important;
+    }
+
+    .text-center {
+      text-align: center !important;
+    }
+
+    /* SUMMARY ROWS */
+    .summary-row td {
+      border: 1px solid #000;
+      padding: 6px 8px;
+      font-size: 13px;
+    }
+
+    .summary-label {
+      font-weight: normal;
+      text-align: left;
+    }
+
+    /* BOTTOM FULL WIDTH BOXES */
+    .bottom-box {
+      border: 1px solid #000;
+      padding: 6px 10px;
+      margin-top: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    /* ROW ACTION CONTROLS (NON PRINT) */
+    .row-actions {
+      text-align: center;
+      width: 30px;
+    }
+
+    .btn-remove-row {
+      background: #fee2e2;
+      color: #dc2626;
+      border: 1px solid #fca5a5;
+      border-radius: 4px;
+      width: 22px;
+      height: 22px;
+      line-height: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .btn-remove-row:hover {
+      background: #dc2626;
+      color: #fff;
+    }
+
+    .add-row-container {
+      margin-top: 6px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    /* FOOTER SECTION */
+    .specimen-footer {
+      margin-top: 20px;
+      font-size: 11px;
+    }
+
+    .eog-code {
+      margin-bottom: 25px;
+    }
+
+    .footer-print-line {
+      border-bottom: 3px double #000;
+      margin-bottom: 4px;
+    }
+
+    .footer-gov-text {
+      text-align: center;
+      font-size: 9px;
+      letter-spacing: 0.5px;
+    }
+
+    /* TABLE RESPONSIVE WRAPPER */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* RESPONSIVE MOBILE STYLES */
+    @media screen and (max-width: 768px) {
+      body {
+        padding: 8px 6px 30px 6px;
+      }
+
+      .top-controls-wrapper {
+        flex-direction: column;
+        margin: 5px 0 10px 0;
+        gap: 12px;
+      }
+
+      .backup-card {
+        width: 100%;
+      }
+
+      .no-print-toolbar {
+        margin: 0;
+        padding: 12px 14px;
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+        border-radius: 10px;
+      }
+
+      .toolbar-title {
+        justify-content: center;
+        font-size: 1rem;
+      }
+
+      .toolbar-actions {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 100%;
+        gap: 6px;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .vat-control {
+        width: auto;
+        justify-content: center;
+        padding: 6px 8px;
+      }
+
+      .btn {
+        width: auto;
+        justify-content: center;
+        padding: 8px 12px;
+        font-size: 0.85rem;
+      }
+
+      .invoice-paper {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: auto !important;
+        padding: 15px 10px 15px 10px !important;
+        background-image: none !important;
+        background-color: #ffffff !important;
+        border-radius: 8px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .section-row {
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .col-half {
+        width: 100%;
+      }
+
+      .box {
+        padding: 6px 8px;
+      }
+
+      .box-stacked .box-label {
+        width: 102px;
+        min-width: 102px;
+      }
+
+      .box-inline .box-label {
+        min-width: 90px;
+      }
+
+      .bottom-box .box-label {
+        min-width: 130px;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      input[type="date"],
+      textarea,
+      select {
+        font-size: 14px !important;
+      }
+
+      .item-table {
+        min-width: 540px;
+      }
+
+      .item-table th,
+      .item-table td {
+        padding: 5px 6px;
+        font-size: 12px;
+      }
+
+      .add-row-container .btn {
+        width: auto;
+      }
+    }
+
+    /* PRINT STYLES - EXACT 1:1 A4 PAGE PREVIEW */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+
+      html,
+      body {
+        width: 210mm;
+        height: 297mm;
+        margin: 0 !important;
+        padding: 0 !important;
+        background-color: #ffffff !important;
+        overflow: hidden;
+      }
+
+      .no-print,
+      .top-controls-wrapper,
+      .backup-card,
+      .no-print-toolbar,
+      .add-row-container,
+      .row-actions,
+      .validation-hint {
+        display: none !important;
+      }
+
+      .invoice-paper {
+        width: 210mm !important;
+        height: 297mm !important;
+        max-height: 297mm !important;
+        padding: 65mm 15mm 15mm 15mm !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        background-image: url('000.jpg') !important;
+        background-size: 210mm 297mm !important;
+        background-position: top left !important;
+        background-repeat: no-repeat !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        page-break-after: avoid !important;
+        page-break-inside: avoid !important;
+      }
+
+      .section-row {
+        flex-direction: row !important;
+        gap: 12px !important;
+      }
+
+      .col-half {
+        width: 50% !important;
+        flex: 1 !important;
+      }
+
+      .box-stacked .box-label {
+        width: 108px !important;
+        min-width: 108px !important;
+      }
+
+      .box-inline .box-label {
+        min-width: 95px !important;
+      }
+
+      .bottom-box .box-label {
+        min-width: 145px !important;
+      }
+
+      .table-responsive {
+        overflow: visible !important;
+      }
+
+      .item-table {
+        min-width: 100% !important;
+        width: 100% !important;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      input[type="date"],
+      textarea,
+      select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background: transparent !important;
+        font-size: 13px !important;
+      }
+
+      /* Clean line heights and border preservation */
+      .item-table th,
+      .item-table td,
+      .box {
+        border-color: #000000 !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOP ACTION & CONTROLS WRAPPER -->
+  <div class="top-controls-wrapper no-print">
+    <div class="no-print-toolbar">
+      <div class="toolbar-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        IRD Sri Lanka Tax Invoice Generator
+      </div>
+      <div class="toolbar-actions">
+        <div class="vat-control">
+          <span>VAT Rate:</span>
+          <input type="number" id="vatRateInput" value="18" min="0" max="100" step="0.5"
+            oninput="calculateInvoiceTotal()">
+          <span>%</span>
+        </div>
+
+        <button class="btn btn-secondary" onclick="loadSampleData()" title="Reset Specimen Data">
+          🔄 Reset
+        </button>
+
+        <button class="btn btn-primary" onclick="window.print()">
+          🖨️ Print / Save as PDF
+        </button>
+      </div>
+    </div>
+
+    <!-- DATA BACKUP & RESTORE CARD -->
+    <div class="backup-card">
+      <div>
+        <div class="backup-card-header">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+            <polyline points="7 3 7 8 15 8"></polyline>
+          </svg>
+          Data Backup &amp; Restore
+        </div>
+        <p class="backup-card-desc">
+          Save a backup file to keep your monthly log data safe or transfer it to another computer.
+        </p>
+      </div>
+      <div class="backup-card-actions">
+        <button class="btn-backup-action" onclick="exportInvoiceData()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Export Data Backup
+        </button>
+        <button class="btn-backup-action" onclick="document.getElementById('importFileInput').click()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+          Import Backup File
+        </button>
+        <input type="file" id="importFileInput" accept=".json" style="display: none;"
+          onchange="importInvoiceData(event)">
+      </div>
+    </div>
+  </div>
+
+  <!-- TAX INVOICE SPECIMEN PAPER -->
+  <div class="invoice-paper">
+    <div>
+
+      <!-- CENTERED TAX INVOICE HEADER BOX -->
+      <div class="title-box-container">
+        <div class="title-box">TAX INVOICE</div>
+      </div>
+
+      <!-- ROW 1: DATE OF INVOICE & TAX INVOICE NO. -->
+      <div class="section-row">
+        <div class="col-half">
+          <div class="box box-inline">
+            <span class="box-label">Date of Invoice:</span>
+            <input type="text" id="dateOfInvoice" value="03/27/2026" placeholder="MM/DD/YYYY"
+              onblur="validateDateField(this)">
+          </div>
+        </div>
+        <div class="col-half">
+          <div class="box box-inline" id="invoiceNoContainer">
+            <span class="box-label">Tax Invoice No. :</span>
+            <input type="text" id="taxInvoiceNo" value="26MAR_BR01_00042" placeholder="YYMMM_QQQQ_XXXXX"
+              oninput="validateInvoiceNo(this)">
+            <div class="validation-hint">Must be YYMMM_QQQQ_XXXXX (max 40 chars)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 2: SUPPLIER & PURCHASER DETAILS -->
+      <div class="section-row">
+        <!-- SUPPLIER BOX -->
+        <div class="col-half">
+          <div class="box box-stacked" style="min-height: 145px;">
+            <div class="box-field-row" id="supplierTinContainer">
+              <span class="box-label">Supplier's TIN :</span>
+              <input type="text" id="supplierTin" value="114819200" maxlength="9" placeholder="9-digit TIN"
+                oninput="validateTin(this)">
+              <div class="validation-hint">Must be exactly 9 digits</div>
+            </div>
+            <div class="box-field-row">
+              <span class="box-label">Supplier's Name :</span>
+              <textarea class="auto-wrap" id="supplierName" rows="1"
+                oninput="autoResizeTextarea(this)">EXIMIUS POWER AND ENERGY (PRIVATE) LIMITED</textarea>
+            </div>
+            <div class="box-field-row">
+              <span class="box-label">Address :</span>
+              <textarea class="auto-wrap" id="supplierAddress" rows="1"
+                oninput="autoResizeTextarea(this)">No: 74 1/1, Orient Building, Union Place, Colombo 02</textarea>
+            </div>
+            <div class="box-field-row" style="margin-top: auto;">
+              <span class="box-label">Telephone No.:*</span>
+              <input type="text" id="supplierPhone" value="+94 11 2311 800">
+            </div>
+          </div>
+        </div>
+
+        <!-- PURCHASER BOX -->
+        <div class="col-half">
+          <div class="box box-stacked" style="min-height: 145px;">
+            <div class="box-field-row" id="purchaserTinContainer">
+              <span class="box-label">Purchaser's TIN :</span>
+              <input type="text" id="purchaserTin" value="987654321" maxlength="9" placeholder="9-digit TIN"
+                oninput="validateTin(this)">
+              <div class="validation-hint">Must be exactly 9 digits</div>
+            </div>
+            <div class="box-field-row">
+              <span class="box-label">Purchaser's Name :</span>
+              <textarea class="auto-wrap" id="purchaserName" rows="1"
+                oninput="autoResizeTextarea(this)">CEYLON RETAIL HOLDINGS PLC</textarea>
+            </div>
+            <div class="box-field-row">
+              <span class="box-label">Address :</span>
+              <textarea class="auto-wrap" id="purchaserAddress" rows="1"
+                oninput="autoResizeTextarea(this)">No. 88, Kandy Road, Kelaniya, Sri Lanka</textarea>
+            </div>
+            <div class="box-field-row" style="margin-top: auto;">
+              <span class="box-label">Telephone No.:*</span>
+              <input type="text" id="purchaserPhone" value="+94 11 876 5432">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 3: DATE OF SUPPLY & PLACE OF SUPPLY -->
+      <div class="section-row">
+        <div class="col-half">
+          <div class="box box-inline">
+            <span class="box-label">Date of Supply :</span>
+            <input type="text" id="dateOfSupply" value="03/25/2026" placeholder="MM/DD/YYYY"
+              onblur="validateDateField(this)">
+          </div>
+        </div>
+        <div class="col-half">
+          <div class="box box-inline">
+            <span class="box-label">Place of Supply :*</span>
+            <textarea class="auto-wrap" id="placeOfSupply" rows="1"
+              oninput="autoResizeTextarea(this)">Colombo Warehouse - Site A</textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 4: ADDITIONAL INFORMATION -->
+      <div class="box box-inline" style="margin-bottom: 8px;">
+        <span class="box-label">Additional Information if any:*</span>
+        <textarea class="auto-wrap" id="additionalInfo" rows="1"
+          oninput="autoResizeTextarea(this)">PO Reference: PO-2026-8942 | Delivery Note: DN-7721</textarea>
+      </div>
+
+      <!-- MAIN GOODS & SERVICES TABLE -->
+      <div class="table-responsive">
+        <table class="item-table" id="itemsTable">
+          <thead>
+            <tr>
+              <th class="col-ref">Reference*</th>
+              <th class="col-desc">Description of Goods or Services</th>
+              <th class="col-qty">Quantity</th>
+              <th class="col-price">Unit Price</th>
+              <th class="col-amount">Amount Excluding VAT (Rs.)</th>
+              <th class="row-actions no-print"></th>
+            </tr>
+          </thead>
+          <tbody id="itemRows">
+            <!-- Dynamic item rows inserted here -->
+          </tbody>
+          <tfoot>
+            <!-- SUMMARY ROW 1: TOTAL VALUE OF SUPPLY -->
+            <tr class="summary-row">
+              <td colspan="4" class="summary-label">Total Value of Supply:</td>
+              <td class="text-right" id="totalValueExcludingVat">0.00</td>
+              <td class="row-actions no-print"></td>
+            </tr>
+            <!-- SUMMARY ROW 2: VAT AMOUNT -->
+            <tr class="summary-row">
+              <td colspan="4" class="summary-label">
+                VAT Amount (Total Value of Supply @ <span id="vatRateDisplay">18</span>% VAT Rate)
+              </td>
+              <td class="text-right" id="vatAmount">0.00</td>
+              <td class="row-actions no-print"></td>
+            </tr>
+            <!-- SUMMARY ROW 3: TOTAL AMOUNT INCLUDING VAT -->
+            <tr class="summary-row">
+              <td colspan="4" class="summary-label" style="font-weight: bold;">
+                Total Amount/consideration including VAT:
+              </td>
+              <td class="text-right" id="totalAmountIncludingVat" style="font-weight: bold;">0.00</td>
+              <td class="row-actions no-print"></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <!-- ADD ROW BUTTON -->
+      <div class="add-row-container no-print">
+        <button class="btn btn-secondary" onclick="addNewRow()">
+          ➕ Add Line Item
+        </button>
+      </div>
+
+      <!-- ROW 5: TOTAL AMOUNT IN WORDS -->
+      <div class="bottom-box">
+        <span class="box-label">Total Amount in words:*</span>
+        <textarea class="auto-wrap" id="totalAmountWords" rows="1" style="font-weight: bold;"
+          oninput="autoResizeTextarea(this)">Rupees Zero Only</textarea>
+      </div>
+
+      <!-- ROW 6: MODE OF PAYMENT -->
+      <div class="bottom-box">
+        <span class="box-label">Mode of Payment:*</span>
+        <textarea class="auto-wrap" id="modeOfPayment" rows="1"
+          oninput="autoResizeTextarea(this)">Bank Transfer / Cheque (Bank of Ceylon - A/C 7044912)</textarea>
+      </div>
+    </div>
+
+
+  </div>
+
+  <script>
+    // AUTO RESIZE TEXTAREA LOGIC
+    function autoResizeTextarea(el) {
+      if (!el) return;
+      el.style.height = 'auto';
+      el.style.height = el.scrollHeight + 'px';
+    }
+
+    function initAutoResizeAll() {
+      document.querySelectorAll('textarea.auto-wrap').forEach(el => {
+        autoResizeTextarea(el);
+      });
+    }
+
+    window.addEventListener('resize', initAutoResizeAll);
+
+    // INITIAL SAMPLE DATA FOR THE GAZETTE SPECIMEN
+    const initialItems = [
+      { ref: "REF-001", desc: "Industrial Commercial Grade Printers", qty: 2, price: 125000.00 },
+      { ref: "REF-002", desc: "High-Capacity Toner Cartridges (Black)", qty: 5, price: 18500.00 },
+      { ref: "REF-003", desc: "Technical Support & On-Site Installation", qty: 1, price: 35000.00 }
+    ];
+
+    // INITIALIZATION ON PAGE LOAD
+    window.addEventListener('DOMContentLoaded', () => {
+      loadSampleData();
+    });
+
+    // LOAD INITIAL SAMPLE DATA
+    function loadSampleData() {
+      const tbody = document.getElementById('itemRows');
+      tbody.innerHTML = '';
+      initialItems.forEach(item => {
+        addNewRow(item.ref, item.desc, item.qty, item.price);
+      });
+      calculateInvoiceTotal();
+      setTimeout(initAutoResizeAll, 50);
+    }
+
+    // ADD A NEW ROW TO THE ITEMS TABLE
+    function addNewRow(ref = '', desc = '', qty = 1, price = 0.00) {
+      const tbody = document.getElementById('itemRows');
+      const tr = document.createElement('tr');
+
+      tr.innerHTML = `
+        <td class="col-ref">
+          <input type="text" value="${escapeHtml(ref)}" placeholder="Ref Code" oninput="calculateInvoiceTotal()">
+        </td>
+        <td class="col-desc">
+          <textarea class="auto-wrap" rows="1" placeholder="Item description" oninput="autoResizeTextarea(this); calculateInvoiceTotal()">${escapeHtml(desc)}</textarea>
+        </td>
+        <td class="col-qty">
+          <input type="number" class="text-right" value="${qty}" min="0" step="1" oninput="calculateInvoiceTotal()">
+        </td>
+        <td class="col-price">
+          <input type="number" class="text-right" value="${parseFloat(price).toFixed(2)}" min="0" step="0.01" oninput="calculateInvoiceTotal()">
+        </td>
+        <td class="col-amount text-right item-line-amount">0.00</td>
+        <td class="row-actions no-print">
+          <button class="btn-remove-row" onclick="removeRow(this)" title="Remove item">&times;</button>
+        </td>
+      `;
+
+      tbody.appendChild(tr);
+      const descTextarea = tr.querySelector('textarea.auto-wrap');
+      if (descTextarea) autoResizeTextarea(descTextarea);
+      calculateInvoiceTotal();
+    }
+
+    // REMOVE A ROW FROM THE TABLE
+    function removeRow(btn) {
+      const row = btn.closest('tr');
+      const tbody = document.getElementById('itemRows');
+      if (tbody.children.length > 1) {
+        row.remove();
+        calculateInvoiceTotal();
+      } else {
+        alert("Invoice must have at least one line item.");
+      }
+    }
+
+    // UTILITY: ESCAPE HTML STRINGS
+    function escapeHtml(text) {
+      return text.replace(/[&<>"']/g, function (m) {
+        return {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#039;'
+        }[m];
+      });
+    }
+
+    // MAIN INVOICE CALCULATION LOGIC
+    function calculateInvoiceTotal() {
+      const rows = document.querySelectorAll('#itemRows tr');
+      let subtotal = 0;
+
+      rows.forEach(row => {
+        const qtyInput = row.querySelector('.col-qty input');
+        const priceInput = row.querySelector('.col-price input');
+        const lineAmountCell = row.querySelector('.item-line-amount');
+
+        const qty = parseFloat(qtyInput.value) || 0;
+        const price = parseFloat(priceInput.value) || 0;
+        const lineTotal = qty * price;
+
+        lineAmountCell.textContent = formatCurrency(lineTotal);
+        subtotal += lineTotal;
+      });
+
+      // Get VAT Rate
+      const vatRateInput = document.getElementById('vatRateInput');
+      let vatRate = parseFloat(vatRateInput.value) || 0;
+      if (vatRate < 0) vatRate = 0;
+      document.getElementById('vatRateDisplay').textContent = vatRate;
+
+      const vatAmount = subtotal * (vatRate / 100);
+      const totalWithVat = subtotal + vatAmount;
+
+      // Update Summary Fields
+      document.getElementById('totalValueExcludingVat').textContent = formatCurrency(subtotal);
+      document.getElementById('vatAmount').textContent = formatCurrency(vatAmount);
+      document.getElementById('totalAmountIncludingVat').textContent = formatCurrency(totalWithVat);
+
+      // Update Amount in Words
+      const totalWordsEl = document.getElementById('totalAmountWords');
+      if (totalWordsEl) {
+        totalWordsEl.value = convertNumberToWords(totalWithVat);
+        autoResizeTextarea(totalWordsEl);
+      }
+    }
+
+    // FORMAT CURRENCY TO LKR / Rs. WITH TWO DECIMAL PLACES AND THOUSAND SEPARATORS
+    function formatCurrency(amount) {
+      return amount.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    // NUMBER TO WORDS CONVERTER FOR SRI LANKAN RUPEES & CENTS
+    function convertNumberToWords(amount) {
+      if (isNaN(amount) || amount === 0) return "Rupees Zero Only";
+
+      const [rupeesStr, centsStr] = amount.toFixed(2).split('.');
+      const rupees = parseInt(rupeesStr, 10);
+      const cents = parseInt(centsStr, 10);
+
+      let words = "Rupees " + numberToWords(rupees);
+
+      if (cents > 0) {
+        words += " and Cents " + numberToWords(cents);
+      }
+      words += " Only";
+
+      return words;
+    }
+
+    function numberToWords(num) {
+      if (num === 0) return "Zero";
+
+      const units = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
+        "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"];
+      const tens = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
+
+      if (num < 20) return units[num];
+      if (num < 100) return tens[Math.floor(num / 10)] + (num % 10 !== 0 ? " " + units[num % 10] : "");
+      if (num < 1000) return units[Math.floor(num / 100)] + " Hundred" + (num % 100 !== 0 ? " " + numberToWords(num % 100) : "");
+      if (num < 1000000) return numberToWords(Math.floor(num / 1000)) + " Thousand" + (num % 1000 !== 0 ? " " + numberToWords(num % 1000) : "");
+      if (num < 1000000000) return numberToWords(Math.floor(num / 1000000)) + " Million" + (num % 1000000 !== 0 ? " " + numberToWords(num % 1000000) : "");
+
+      return num.toString();
+    }
+
+    // VALIDATION: TAX INVOICE SERIAL NUMBER (YYMMM_QQQQ_XXXXX max 40 chars)
+    function validateInvoiceNo(input) {
+      const container = document.getElementById('invoiceNoContainer');
+      const val = input.value.trim();
+      // Format regex: 2 digits year + 3 letter month + '_' + 4 chars branch + '_' + up to 30 chars/numbers, max 40 total
+      const regex = /^[0-9]{2}[A-Z]{3}_[A-Z0-9]{4}_[A-Z0-9]{1,30}$/;
+
+      if (val.length <= 40 && regex.test(val)) {
+        container.classList.remove('invalid');
+      } else {
+        container.classList.add('invalid');
+      }
+    }
+
+    // AUTO GENERATE TAX INVOICE NUMBER (YYMMM_QQQQ_XXXXX)
+    function generateInvoiceNumber() {
+      const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+      const now = new Date();
+      const yy = String(now.getFullYear()).slice(-2);
+      const mmm = months[now.getMonth()];
+      const branch = "BR01";
+      const randomSeq = String(Math.floor(Math.random() * 90000) + 10000);
+
+      const generatedNo = `${yy}${mmm}_${branch}_${randomSeq}`;
+      const input = document.getElementById('taxInvoiceNo');
+      input.value = generatedNo;
+      validateInvoiceNo(input);
+    }
+
+    // VALIDATION: 9-DIGIT TIN NUMBER
+    function validateTin(input) {
+      const container = input.closest('.box-field-row');
+      const val = input.value.trim();
+      const regex = /^\d{9}$/;
+
+      if (regex.test(val)) {
+        container.classList.remove('invalid');
+      } else {
+        container.classList.add('invalid');
+      }
+    }
+
+    // VALIDATION: DATE FORMAT MM/DD/YYYY
+    function validateDateField(input) {
+      const val = input.value.trim();
+      const regex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/(19|20)\d\d$/;
+      if (!regex.test(val) && val !== '') {
+        // If not matching MM/DD/YYYY, attempt format correction if user entered YYYY-MM-DD or standard JS date
+        const parsed = new Date(val);
+        if (!isNaN(parsed.getTime())) {
+          const mm = String(parsed.getMonth() + 1).padStart(2, '0');
+          const dd = String(parsed.getDate()).padStart(2, '0');
+          const yyyy = parsed.getFullYear();
+          input.value = `${mm}/${dd}/${yyyy}`;
+        }
+      }
+    }
+
+    // EXPORT DATA BACKUP (DOWNLOAD JSON FILE)
+    function exportInvoiceData() {
+      const data = {
+        version: "1.0",
+        exportedAt: new Date().toISOString(),
+        vatRate: document.getElementById('vatRateInput').value,
+        dateOfInvoice: document.getElementById('dateOfInvoice').value,
+        taxInvoiceNo: document.getElementById('taxInvoiceNo').value,
+        supplier: {
+          tin: document.getElementById('supplierTin').value,
+          name: document.getElementById('supplierName').value,
+          address: document.getElementById('supplierAddress').value,
+          phone: document.getElementById('supplierPhone').value
+        },
+        purchaser: {
+          tin: document.getElementById('purchaserTin').value,
+          name: document.getElementById('purchaserName').value,
+          address: document.getElementById('purchaserAddress').value,
+          phone: document.getElementById('purchaserPhone').value
+        },
+        dateOfSupply: document.getElementById('dateOfSupply').value,
+        placeOfSupply: document.getElementById('placeOfSupply').value,
+        additionalInfo: document.getElementById('additionalInfo').value,
+        items: [],
+        totalAmountWords: document.getElementById('totalAmountWords').value,
+        modeOfPayment: document.getElementById('modeOfPayment').value
+      };
+
+      const rows = document.querySelectorAll('#itemRows tr');
+      rows.forEach(row => {
+        const ref = row.querySelector('.col-ref input')?.value || '';
+        const desc = row.querySelector('.col-desc textarea')?.value || '';
+        const qty = parseFloat(row.querySelector('.col-qty input')?.value) || 0;
+        const price = parseFloat(row.querySelector('.col-price input')?.value) || 0;
+        data.items.push({ ref, desc, qty, price });
+      });
+
+      const jsonStr = JSON.stringify(data, null, 2);
+      const blob = new Blob([jsonStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+
+      const rawInvNo = data.taxInvoiceNo || 'invoice';
+      const safeInvNo = rawInvNo.replace(/[^a-zA-Z0-9_-]/g, '_');
+      const dateTag = new Date().toISOString().slice(0, 10);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `tax_invoice_backup_${safeInvNo}_${dateTag}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    // IMPORT DATA BACKUP (READ JSON FILE)
+    function importInvoiceData(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        try {
+          const data = JSON.parse(e.target.result);
+
+          if (data.vatRate !== undefined) document.getElementById('vatRateInput').value = data.vatRate;
+          if (data.dateOfInvoice !== undefined) document.getElementById('dateOfInvoice').value = data.dateOfInvoice;
+
+          if (data.taxInvoiceNo !== undefined) {
+            const invInput = document.getElementById('taxInvoiceNo');
+            invInput.value = data.taxInvoiceNo;
+            validateInvoiceNo(invInput);
+          }
+
+          if (data.supplier) {
+            if (data.supplier.tin !== undefined) {
+              const sTin = document.getElementById('supplierTin');
+              sTin.value = data.supplier.tin;
+              validateTin(sTin);
+            }
+            if (data.supplier.name !== undefined) document.getElementById('supplierName').value = data.supplier.name;
+            if (data.supplier.address !== undefined) document.getElementById('supplierAddress').value = data.supplier.address;
+            if (data.supplier.phone !== undefined) document.getElementById('supplierPhone').value = data.supplier.phone;
+          }
+
+          if (data.purchaser) {
+            if (data.purchaser.tin !== undefined) {
+              const pTin = document.getElementById('purchaserTin');
+              pTin.value = data.purchaser.tin;
+              validateTin(pTin);
+            }
+            if (data.purchaser.name !== undefined) document.getElementById('purchaserName').value = data.purchaser.name;
+            if (data.purchaser.address !== undefined) document.getElementById('purchaserAddress').value = data.purchaser.address;
+            if (data.purchaser.phone !== undefined) document.getElementById('purchaserPhone').value = data.purchaser.phone;
+          }
+
+          if (data.dateOfSupply !== undefined) document.getElementById('dateOfSupply').value = data.dateOfSupply;
+          if (data.placeOfSupply !== undefined) document.getElementById('placeOfSupply').value = data.placeOfSupply;
+          if (data.additionalInfo !== undefined) document.getElementById('additionalInfo').value = data.additionalInfo;
+
+          if (Array.isArray(data.items) && data.items.length > 0) {
+            const tbody = document.getElementById('itemRows');
+            tbody.innerHTML = '';
+            data.items.forEach(item => {
+              addNewRow(item.ref || '', item.desc || '', item.qty || 1, item.price || 0);
+            });
+          }
+
+          if (data.modeOfPayment !== undefined) document.getElementById('modeOfPayment').value = data.modeOfPayment;
+
+          calculateInvoiceTotal();
+
+          if (data.totalAmountWords !== undefined) {
+            document.getElementById('totalAmountWords').value = data.totalAmountWords;
+          }
+
+          initAutoResizeAll();
+          alert('Data imported successfully!');
+        } catch (err) {
+          alert('Invalid backup file! Please select a valid JSON backup file.');
+          console.error(err);
+        }
+      };
+
+      reader.readAsText(file);
+      event.target.value = ''; // Reset input selection
+    }
+  </script>
+</body>
+
+</html>
