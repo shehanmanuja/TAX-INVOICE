@@ -733,6 +733,17 @@
         font-size: 13px !important;
       }
 
+      /* Hide calendar icon picker indicator, spin buttons & clear buttons when printing */
+      input[type="date"]::-webkit-calendar-picker-indicator,
+      input[type="date"]::-webkit-inner-spin-button,
+      input[type="date"]::-webkit-clear-button,
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        display: none !important;
+        -webkit-appearance: none !important;
+        opacity: 0 !important;
+      }
+
       /* Clean line heights and border preservation */
       .item-table th,
       .item-table td,
@@ -832,8 +843,7 @@
         <div class="col-half">
           <div class="box box-inline">
             <span class="box-label">Date of Invoice:</span>
-            <input type="text" id="dateOfInvoice" value="03/27/2026" placeholder="MM/DD/YYYY"
-              onblur="validateDateField(this)">
+            <input type="date" id="dateOfInvoice" value="">
           </div>
         </div>
         <div class="col-half">
@@ -868,7 +878,7 @@
                 oninput="autoResizeTextarea(this)">No: 74 1/1, Orient Building, Union Place, Colombo 02</textarea>
             </div>
             <div class="box-field-row" style="margin-top: auto;">
-              <span class="box-label">Telephone No.:*</span>
+              <span class="box-label">Telephone No.:</span>
               <input type="text" id="supplierPhone" value="+94 11 2311 800">
             </div>
           </div>
@@ -894,7 +904,7 @@
                 oninput="autoResizeTextarea(this)">No. 88, Kandy Road, Kelaniya, Sri Lanka</textarea>
             </div>
             <div class="box-field-row" style="margin-top: auto;">
-              <span class="box-label">Telephone No.:*</span>
+              <span class="box-label">Telephone No.:</span>
               <input type="text" id="purchaserPhone" value="+94 11 876 5432">
             </div>
           </div>
@@ -906,13 +916,12 @@
         <div class="col-half">
           <div class="box box-inline">
             <span class="box-label">Date of Supply :</span>
-            <input type="text" id="dateOfSupply" value="03/25/2026" placeholder="MM/DD/YYYY"
-              onblur="validateDateField(this)">
+            <input type="date" id="dateOfSupply" value="">
           </div>
         </div>
         <div class="col-half">
           <div class="box box-inline">
-            <span class="box-label">Place of Supply :*</span>
+            <span class="box-label">Place of Supply :</span>
             <textarea class="auto-wrap" id="placeOfSupply" rows="1"
               oninput="autoResizeTextarea(this)">Colombo Warehouse - Site A</textarea>
           </div>
@@ -921,7 +930,7 @@
 
       <!-- ROW 4: ADDITIONAL INFORMATION -->
       <div class="box box-inline" style="margin-bottom: 8px;">
-        <span class="box-label">Additional Information if any:*</span>
+        <span class="box-label">Additional Information if any:</span>
         <textarea class="auto-wrap" id="additionalInfo" rows="1"
           oninput="autoResizeTextarea(this)">PO Reference: PO-2026-8942 | Delivery Note: DN-7721</textarea>
       </div>
@@ -978,14 +987,14 @@
 
       <!-- ROW 5: TOTAL AMOUNT IN WORDS -->
       <div class="bottom-box">
-        <span class="box-label">Total Amount in words:*</span>
+        <span class="box-label">Total Amount in words:</span>
         <textarea class="auto-wrap" id="totalAmountWords" rows="1" style="font-weight: bold;"
           oninput="autoResizeTextarea(this)">Rupees Zero Only</textarea>
       </div>
 
       <!-- ROW 6: MODE OF PAYMENT -->
       <div class="bottom-box">
-        <span class="box-label">Mode of Payment:*</span>
+        <span class="box-label">Mode of Payment:</span>
         <textarea class="auto-wrap" id="modeOfPayment" rows="1"
           oninput="autoResizeTextarea(this)">Bank Transfer / Cheque (Bank of Ceylon - A/C 7044912)</textarea>
       </div>
@@ -1029,6 +1038,12 @@
       initialItems.forEach(item => {
         addNewRow(item.ref, item.desc, item.qty, item.price);
       });
+
+      // Set sample date (2026-03-26 matching invoice no sequence)
+      const todayStr = '2026-03-26';
+      document.getElementById('dateOfInvoice').value = todayStr;
+      document.getElementById('dateOfSupply').value = todayStr;
+
       calculateInvoiceTotal();
       setTimeout(initAutoResizeAll, 50);
     }
